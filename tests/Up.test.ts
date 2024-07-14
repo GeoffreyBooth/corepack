@@ -2,7 +2,7 @@ import {describe, beforeEach, it, expect} from '@jest/globals';
 import {ppath, xfs, npath}                from '@yarnpkg/fslib';
 import process                            from 'node:process';
 
-import {runCli}                           from './_runCli';
+import {runCli}                           from './_runCli.ts';
 
 beforeEach(async () => {
   // `process.env` is reset after each tests in setupTests.js.

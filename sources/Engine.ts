@@ -1,22 +1,23 @@
-import {UsageError}                                           from 'clipanion';
-import fs                                                     from 'fs';
-import path                                                   from 'path';
-import process                                                from 'process';
-import semverRcompare                                         from 'semver/functions/rcompare';
-import semverValid                                            from 'semver/functions/valid';
-import semverValidRange                                       from 'semver/ranges/valid';
+import {UsageError}                                                from 'clipanion';
+import fs                                                          from 'fs';
+import path                                                        from 'path';
+import process                                                     from 'process';
+import semverRcompare                                              from 'semver/functions/rcompare.js';
+import semverValid                                                 from 'semver/functions/valid.js';
+import semverValidRange                                            from 'semver/ranges/valid.js';
 
-import defaultConfig                                          from '../config.json';
+import defaultConfig                                               from '../config.json' with { type: 'json' };
 
-import * as corepackUtils                                     from './corepackUtils';
-import * as debugUtils                                        from './debugUtils';
-import * as folderUtils                                       from './folderUtils';
-import type {NodeError}                                       from './nodeUtils';
-import * as semverUtils                                       from './semverUtils';
-import * as specUtils                                         from './specUtils';
-import {Config, Descriptor, Locator, PackageManagerSpec}      from './types';
-import {SupportedPackageManagers, SupportedPackageManagerSet} from './types';
-import {isSupportedPackageManager}                            from './types';
+import * as corepackUtils                                          from './corepackUtils.ts';
+import * as debugUtils                                             from './debugUtils.ts';
+import * as folderUtils                                            from './folderUtils.ts';
+import type {NodeError}                                            from './nodeUtils.ts';
+import * as semverUtils                                            from './semverUtils.ts';
+import * as specUtils                                              from './specUtils.ts';
+import {SupportedPackageManagerSet, isSupportedPackageManager}     from './types.ts';
+import type {Config, Descriptor, Locator, PackageManagerSpec}      from './types.ts';
+import type {SupportedPackageManagers}                             from './types.ts';
+import type {SupportedPackageManagersWithoutNpm}                   from './types.ts';
 
 export type PreparedPackageManagerInfo = Awaited<ReturnType<Engine[`ensurePackageManager`]>>;
 
@@ -81,7 +82,10 @@ export async function activatePackageManager(lastKnownGood: Record<string, strin
 }
 
 export class Engine {
-  constructor(public config: Config = defaultConfig as Config) {
+  config: Config;
+
+  constructor(config: Config = defaultConfig as Config) {
+    this.config = config;
   }
 
   getPackageManagerFor(binaryName: string): SupportedPackageManagers | null {

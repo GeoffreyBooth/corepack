@@ -4,8 +4,9 @@ import fs                                                                from 'f
 import path                                                              from 'path';
 import which                                                             from 'which';
 
-import {Context}                                                         from '../main';
-import {isSupportedPackageManager, SupportedPackageManagerSetWithoutNpm} from '../types';
+import type {Context}                                                    from '../main.ts';
+import {isSupportedPackageManager, SupportedPackageManagerSetWithoutNpm} from '../types.ts';
+import type {SupportedPackageManagersWithoutNpm}                         from '../types.ts';
 
 export class EnableCommand extends Command<Context> {
   static paths = [
@@ -63,10 +64,10 @@ export class EnableCommand extends Command<Context> {
     const allBinNames: Array<string> = [];
 
     for (const name of new Set(names)) {
-      if (!isSupportedPackageManager(name))
+      if (!isSupportedPackageManager(name as string))
         throw new UsageError(`Invalid package manager name '${name}'`);
 
-      const binNames = this.context.engine.getBinariesFor(name);
+      const binNames = this.context.engine.getBinariesFor(name as SupportedPackageManagersWithoutNpm);
       allBinNames.push(...binNames);
     }
 

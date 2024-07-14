@@ -1,7 +1,7 @@
 import {jest, describe, it, expect} from '@jest/globals';
 
-import defaultConfig                from '../config.json';
-import {DEFAULT_NPM_REGISTRY_URL}   from '../sources/npmRegistryUtils';
+import defaultConfig                from '../config.json' with { type: 'json'};
+import {DEFAULT_NPM_REGISTRY_URL}   from '../sources/npmRegistryUtils.ts';
 
 jest.mock(`../sources/httpUtils`);
 

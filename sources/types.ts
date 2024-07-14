@@ -1,22 +1,23 @@
 export type BinSpec = {[key: string]: string};
 export type BinList = Array<string>;
 
-export enum SupportedPackageManagers {
-  Npm = `npm`,
-  Pnpm = `pnpm`,
-  Yarn = `yarn`,
-}
+export const SupportedPackageManagersEnum = {
+  Npm: `npm`,
+  Pnpm: `pnpm`,
+  Yarn: `yarn`,
+} as const;
+
+export type SupportedPackageManagers = typeof SupportedPackageManagersEnum[keyof typeof SupportedPackageManagersEnum]
+export type SupportedPackageManagersWithoutNpm = Exclude<SupportedPackageManagers, `npm`>;
 
 export const SupportedPackageManagerSet = new Set<SupportedPackageManagers>(
-  Object.values(SupportedPackageManagers),
-);
-
-export const SupportedPackageManagerSetWithoutNpm = new Set<SupportedPackageManagers>(
-  Object.values(SupportedPackageManagers),
+  Object.values(SupportedPackageManagersEnum),
 );
 
 // npm is distributed with Node as a builtin; we don't want Corepack to override it unless the npm team is on board
-SupportedPackageManagerSetWithoutNpm.delete(SupportedPackageManagers.Npm);
+export const SupportedPackageManagerSetWithoutNpm = new Set<SupportedPackageManagersWithoutNpm>(
+  Object.values(SupportedPackageManagersEnum).filter((name) => name !== SupportedPackageManagersEnum.Npm),
+);
 
 export function isSupportedPackageManager(value: string): value is SupportedPackageManagers {
   return SupportedPackageManagerSet.has(value as SupportedPackageManagers);

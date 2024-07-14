@@ -2,10 +2,10 @@ import {jest, describe, beforeEach, it, expect}                 from '@jest/glob
 import {Buffer}                                                 from 'node:buffer';
 import process                                                  from 'node:process';
 
-import {fetchAsJson as httpFetchAsJson}                         from '../sources/httpUtils';
-import {DEFAULT_HEADERS, DEFAULT_NPM_REGISTRY_URL, fetchAsJson} from '../sources/npmRegistryUtils';
+import {fetchAsJson as httpFetchAsJson}                         from '../sources/httpUtils.ts';
+import {DEFAULT_HEADERS, DEFAULT_NPM_REGISTRY_URL, fetchAsJson} from '../sources/npmRegistryUtils.ts';
 
-jest.mock(`../sources/httpUtils`);
+jest.mock(`../sources/httpUtils.ts`);
 
 describe(`npm registry utils fetchAsJson`, () => {
   beforeEach(() => {

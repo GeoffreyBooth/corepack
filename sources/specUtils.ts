@@ -1,12 +1,13 @@
 import {UsageError}                            from 'clipanion';
 import fs                                      from 'fs';
 import path                                    from 'path';
-import semverValid                             from 'semver/functions/valid';
+import semverValid                             from 'semver/functions/valid.js';
 
-import {PreparedPackageManagerInfo}            from './Engine';
-import {NodeError}                             from './nodeUtils';
-import * as nodeUtils                          from './nodeUtils';
-import {Descriptor, isSupportedPackageManager} from './types';
+import type {PreparedPackageManagerInfo}       from './Engine.ts';
+import type {NodeError}                        from './nodeUtils.ts';
+import * as nodeUtils                          from './nodeUtils.ts';
+import {isSupportedPackageManager}             from './types.ts';
+import type {Descriptor}                       from './types.ts';
 
 const nodeModulesRegExp = /[\\/]node_modules[\\/](@[^\\/]*[\\/])?([^@\\/][^\\/]*)$/;
 

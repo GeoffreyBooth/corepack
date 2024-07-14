@@ -4,10 +4,10 @@ import os                                          from 'node:os';
 import process                                     from 'node:process';
 
 import config                                      from '../config.json';
-import * as folderUtils                            from '../sources/folderUtils';
-import {SupportedPackageManagerSet}                from '../sources/types';
+import * as folderUtils                            from '../sources/folderUtils.ts';
+import {SupportedPackageManagerSet}                from '../sources/types.ts';
 
-import {runCli}                                    from './_runCli';
+import {runCli}                                    from './_runCli.ts';
 
 
 beforeEach(async () => {

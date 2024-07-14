@@ -12,6 +12,7 @@
   "engines": {
     "node": "^18.17.1 || >=20.10.0"
   },
+  "type": "module",
   "exports": {
     "./package.json": "./package.json"
   },

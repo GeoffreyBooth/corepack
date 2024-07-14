@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "esModuleInterop": true,
@@ -8,7 +9,7 @@
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2023"],
-    "module": "commonjs",
+    "module": "ESNext",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
